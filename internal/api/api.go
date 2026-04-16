@@ -1,13 +1,11 @@
 package api
 
 import (
-	"net/http"
-
+	"dtech.com/traktirku/internal/handler"
 	"github.com/gorilla/mux"
 )
 
 func NewApi(s *mux.Router) {
-	s.HandleFunc("/users", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("WKWKWK"))
-	}).Methods("GET")
+	auth := handler.NewAuth()
+	s.HandleFunc("/login", auth.Login).Methods("GET")
 }
